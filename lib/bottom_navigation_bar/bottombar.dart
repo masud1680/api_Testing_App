@@ -1,4 +1,5 @@
 import 'package:api_learning/single_screens/Quotes.dart';
+import 'package:api_learning/single_screens/names.dart';
 import 'package:flutter/material.dart';
 class BottomSwitchScreen extends StatefulWidget {
   const BottomSwitchScreen({super.key});
@@ -11,7 +12,7 @@ class _BottomSwitchScreenState extends State<BottomSwitchScreen> {
   // State variable to hold the selected index
   int pageIndex = 0;
 
-  List screen = [QuotesScreen()];
+  List screen = [QuotesScreen(), NamesScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -48,7 +49,7 @@ class _BottomSwitchScreenState extends State<BottomSwitchScreen> {
               label: "Quotes",
             ),
             BottomNavigationBarItem(
-              icon: Icon(Icons.delete_forever),
+              icon: Icon(Icons.drive_file_rename_outline),
               label: "Names",
             ),
           ],

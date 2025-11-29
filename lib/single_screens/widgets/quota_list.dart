@@ -17,7 +17,9 @@ class QuotaListWidget extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListView.builder(
+    return quotaData.isEmpty
+    ? Center(child: Text("No data found!!"))
+        : ListView.builder(
       padding: EdgeInsets.only(bottom: 100),
 
       itemCount: quotaData.length,

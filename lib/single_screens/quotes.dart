@@ -25,7 +25,7 @@ class _QuotesScreenState extends State<QuotesScreen> {
   getData() async {
     isLoading = true;
     setState(() {});
-    var apiData = await QuotaApi.getDataFromApi();
+    var apiData = await QuotaApi.getQuotesDataFromApi();
     quotaData = apiData['data'];
     // print(quotaData);
 
@@ -39,6 +39,26 @@ class _QuotesScreenState extends State<QuotesScreen> {
 
     super.initState();
     getData();
+  }
+
+  //  working start for search box
+  TextEditingController searchController = TextEditingController();
+  int searchLength = 0;
+  List SearchQuotaData = [];
+
+
+  // notes search and only match add queryResultNotes list
+  void queryFindNotes() {
+    for (dynamic singleMap in quotaData) {
+      if (singleMap["quote"].toLowerCase().contains(
+        searchController.text.toLowerCase(),
+      ) ||
+          singleMap["author"].toLowerCase().contains(
+            searchController.text.toLowerCase(),
+          )) {
+        SearchQuotaData.add(singleMap);
+      }
+    }
   }
 
   @override
@@ -73,6 +93,15 @@ class _QuotesScreenState extends State<QuotesScreen> {
               Padding(
                 padding: const EdgeInsets.only(top: 20),
                 child: SearchBar(
+                  controller: searchController,
+                  onChanged: (value) {
+                    searchLength = searchController.text.length;
+                    SearchQuotaData.clear();
+                    queryFindNotes();
+                    searchController.text.isEmpty ? SearchQuotaData.clear() : null;
+                    setState(() {});
+
+                  },
                   shape: WidgetStatePropertyAll(
                     ContinuousRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -129,15 +158,19 @@ class _QuotesScreenState extends State<QuotesScreen> {
                         },
                       ),
                     )
-                  : quotaData.isEmpty
-                  ? Center(child: Text("No data found!!"))
-                  : // Card
-                    Expanded(
-                      child: QuotaListWidget(
-                        quotaData: quotaData,
-                        commaImg: commaImg,
-                        random: random,
-                      ),
+                  // Card
+                   : Expanded(
+                      child: searchLength == 0
+                          ? QuotaListWidget(
+                              quotaData: quotaData,
+                              commaImg: commaImg,
+                              random: random,
+                            )
+                          : QuotaListWidget(
+                              quotaData: SearchQuotaData,
+                              commaImg: commaImg,
+                              random: random,
+                            ),
                     ),
             ],
           ),
