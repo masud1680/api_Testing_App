@@ -143,49 +143,34 @@ class _NamesScreenState extends State<NamesScreen> {
               SizedBox(height: 10),
               // alphabet find Circle
               SizedBox(
-                height: 35,
+                height: 38,
                 child: ListView.builder(
 
                   shrinkWrap: true,
                   scrollDirection: Axis.horizontal,
                   itemCount: alphabet.length,
                   itemBuilder: (context, index) {
-                    return ElevatedButton(
-                      style: ButtonStyle(
-                        shape: WidgetStatePropertyAll(CircleBorder()),
-                        backgroundColor: WidgetStatePropertyAll(Colors.blue),
-                        overlayColor: WidgetStatePropertyAll(Colors.yellow)
+                    return Padding(
+                      padding: const EdgeInsets.all(2.0),
+                      child: ElevatedButton(
+                        style: ButtonStyle(
+                          shape: WidgetStatePropertyAll(CircleBorder()),
+                          backgroundColor: WidgetStatePropertyAll(Colors.blue),
+                          overlayColor: WidgetStatePropertyAll(Colors.yellow)
+                        ),
+                        onPressed: () {
+
+                          getAlphabetData(alphabet[index]);
+                        }, child: Text(
+                        "${alphabet[index]}",
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          fontSize: 18,
+                        ),
                       ),
-                      onPressed: () {
-                        
-                        getAlphabetData(alphabet[index]);
-                      }, child: Text(
-                      "${alphabet[index]}",
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontWeight: FontWeight.w600,
-                        fontSize: 18,
                       ),
-                    ),
                     );
-                    // return InkWell(
-                    //   overlayColor: WidgetStatePropertyAll(Colors.transparent),
-                    //   onTap: () {
-                    //     getAlphabetData(alphabet[index]);
-                    //   },
-                    //   child: CircleAvatar(
-                        //   backgroundColor: Colors.blue,
-                        //
-                        //   child: Text(
-                        //     "${alphabet[index]}",
-                        //     style: TextStyle(
-                        //       color: Colors.white,
-                        //       fontWeight: FontWeight.w600,
-                        //       fontSize: 18,
-                        //     ),
-                        //   ),
-                        // )
-                    // );
                   },
                 ),
               ),
