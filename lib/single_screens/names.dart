@@ -144,6 +144,7 @@ class _NamesScreenState extends State<NamesScreen> {
               // alphabet find Circle
               SizedBox(
                 height: 38,
+                width: double.infinity,
                 child: ListView.builder(
 
                   shrinkWrap: true,
