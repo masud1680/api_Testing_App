@@ -1,5 +1,6 @@
 import 'package:api_learning/single_screens/Quotes.dart';
 import 'package:api_learning/single_screens/names.dart';
+import 'package:api_learning/single_screens/widgets/category_quota.dart';
 import 'package:flutter/material.dart';
 class BottomSwitchScreen extends StatefulWidget {
   const BottomSwitchScreen({super.key});
@@ -12,7 +13,7 @@ class _BottomSwitchScreenState extends State<BottomSwitchScreen> {
   // State variable to hold the selected index
   int pageIndex = 0;
 
-  List screen = [QuotesScreen(), NamesScreen()];
+  List screen = [CategoryQuota(),QuotesScreen(), NamesScreen()];
 
   @override
   Widget build(BuildContext context) {
@@ -44,6 +45,10 @@ class _BottomSwitchScreenState extends State<BottomSwitchScreen> {
             });
           },
           items: [
+            BottomNavigationBarItem(
+              icon: Icon(Icons.description_outlined),
+              label: "CQ",
+            ),
             BottomNavigationBarItem(
               icon: Icon(Icons.description_outlined),
               label: "Quotes",

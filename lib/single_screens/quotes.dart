@@ -162,10 +162,10 @@ class _QuotesScreenState extends State<QuotesScreen> {
                    : Expanded(
                       child: searchLength == 0
                           ? QuotaListWidget(
-                              quotaData: quotaData,
-                              commaImg: commaImg,
-                              random: random,
-                            )
+                        quotaData: quotaData,
+                        commaImg: commaImg,
+                        random: random,
+                      )
                           : QuotaListWidget(
                               quotaData: SearchQuotaData,
                               commaImg: commaImg,
